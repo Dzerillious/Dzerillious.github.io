@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Jídelny</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="script.js"></script> 
+  </head>
+  <body>
+    <div class="modal fade" id="modalPrihlasit" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Přihlásit se</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Jméno</span>
+                  </div>
+                  <input type="text" class="form-control" value="">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Heslo</span>
+                  </div>
+                  <input type="password" class="form-control" value="">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
+            <button type="button" class="btn btn-primary">Přihlásit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modalRegistrovat" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" >Přihlásit se</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Jméno</span>
+                  </div>
+                  <input type="text" class="form-control" value="">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Heslo</span>
+                  </div>
+                  <input type="password" class="form-control" value="">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Heslo znovu</span>
+                  </div>
+                  <input type="password" class="form-control" value="">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Adresa</span>
+                  </div>
+                  <input type="text" class="form-control" value="">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">E-mail</span>
+                  </div>
+                  <input type="email" class="form-control" aria-describedby="emailHelp">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Tel.</span>
+                  </div>
+                  <input type="text" class="form-control" value="">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
+            <button type="button" class="btn btn-primary">Registrovat</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modalUcet" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Účet</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Jméno</span>
+                  </div>
+                  <input type="text" class="form-control" value="Učitel Národů">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Heslo</span>
+                  </div>
+                  <input type="password" class="form-control" value="">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Heslo znovu</span>
+                  </div>
+                  <input type="password" class="form-control" value="">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Adresa</span>
+                  </div>
+                  <input type="text" class="form-control" value="Božetěchova 1/2">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">E-mail</span>
+                  </div>
+                  <input type="email" class="form-control" value="jan.amos.komensky@mail.cz" aria-describedby="emailHelp">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Tel.</span>
+                  </div>
+                  <input type="text" class="form-control" value="213 526 756">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
+            <button type="button" class="btn btn-primary">Aktualizovat</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jumbotron text-center" style="margin-bottom:0">
+      <h1>Jídelny</h1>
+      <p>Najíst se a být happy</p> 
+    </div>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-end">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link" href="index.html">Jídelny</a></li> 
+              <li class="nav-item user"><a class="nav-link" href="sledovat.html">Sledovat objednávky</a></li> 
+              <li class="nav-item driver"><a class="nav-link" href="sprava-objednavek.html">Správa objednávek</a></li> 
+              <li class="nav-item operator active"><a class="nav-link" href="sprava-provozoven.html">Správa provozoven</a></li> 
+              <li class="nav-item operator"><a class="nav-link" href="plany-ridicu.html">Plány řidičů</a></li> 
+              <li class="nav-item admin"><a class="nav-link" href="sprava-uzivatelu.html">Správa uživatelů</a></li> 
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse flex-grow-0">
+            <ul class="navbar-nav text-right">
+                <li class="nav-item unsigned">
+                  <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalPrihlasit"><span class="fa fa-user"></span> Přihlásit</button>
+                      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalRegistrovat"><span class="fa fa-id-card"></span> Registrovat</button>
+                  </div>
+                </li>
+                <li class="nav-item signed"></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mb-4 mt-4">
+      <div class="row">
+        <div class="flex-column col-sm-3">
+            <div id="manage-places"></div>
+            <button type="button" class="btn btn-success row" onclick="addPlace()">+</button>
+        </div>
+        <div class="col-sm-9">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Jméno</span>
+            </div>
+            <input type="text" class="form-control" value="Formanka">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Adresa</span>
+            </div>
+            <input type="text" class="form-control" value="Mášova 8, Veveří, Brno střed">
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary">Aktualizovat</button>
+            <button type="button" class="btn btn-primary">Uzavřít objednávání</button>
+          </div>
+          <hr/>
+          <h2>Denní menu</h2>
+          <hr/>
+          <div>
+            <div id="daily-menu"></div>
+            <button type="button" class="btn btn-success" onclick="addDailyMenuItem()">+</button>
+          </div>
+
+          <hr/> 
+          <h2>Stálé menu</h2>
+          <hr/>
+          <div>
+              <div id="menu"></div>
+              <button type="button" class="btn btn-success" onclick="addMenuItem()">+</button>
+          </div>
+          <hr/>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary">Aktualizovat</button>
+            <button type="button" class="btn btn-primary">Uzavřít objednávání</button>
+          </div>
+          <script src="extensions/extensions.js"></script>
+          <script src="views/manageItem.js"></script>
+          <script src="views/managePlace.js"></script>
+          <script src="views/managePlaces.js"></script>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="jumbotron text-center" style="margin-bottom:0">
+      <p>Vytvořeno Danielem Šerým a Františkem Kolečkem</p>
+    </div>
+  </body>
+</html>
