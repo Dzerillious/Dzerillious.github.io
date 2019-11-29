@@ -1,58 +1,65 @@
 class ManagePlaces {
     constructor() {
-        this.items = [];
         this.name = "manage-places"
         this.places = document.getElementById("manage-places");
-        this.InitializeComponents();
-    }
-    
-    InitializeComponents() {
-        this.AddItem("Formanka", true);
-        this.AddItem("Suzies", false);
-        this.AddItem("Na vyhlídce", false);
+        this.SetPlaces();
     }
 
-    AddItem(text, active) {
+    ActualizePlace(button, id) {
+        SetClassList(button, this.name, "select", "btn", "btn-primary");
+        managePlace.ActualizePlace(id);
+    }
+    
+    SetPlaces() {
+        ClearElement(this.places);
+        this.items = [];
+        this.buttons = [];
+        
+        const restaurants = phpGetRestaurants();
+        for (var i in restaurants) {
+            this.AddPlace(restaurants[i].id, restaurants[i].name);
+        }
+        this.ActualizePlace(this.buttons[0], restaurants[0].id);
+    }
+
+    AddPlace(id, text) {
         const manage = this;
         this.items.push(text);
 
-        const body = document.createElement("div");
-        SetClassList(body, this.name, "row", "input-group", "mb-2");
+        const body = Create("div", this.name, "row", "input-group", "mb-2");
         this.places.appendChild(body);
 
-        const selectDiv = document.createElement("div");
-        SetClassList(selectDiv, this.name, "select-div", "input-group-prepend");
+        const selectDiv = Create("div", this.name, "select-div", "input-group-prepend");
         body.appendChild(selectDiv);
         
-        const select = document.createElement("button");
-        if (active) SetClassList(select, this.name, "select", "btn", "btn-primary");
-        else SetClassList(select, this.name, "select", "btn");
+        const select = Create("button", this.name, "select", "btn");
         select.onclick = () => {
-
-        }
+            for (var i in manage.buttons) {
+                SetClassList(manage.buttons[i], this.name, "select", "btn");
+            }
+            this.ActualizePlace(select, id);
+        };
+        this.buttons.push(select);
         select.innerText = text;
         selectDiv.appendChild(select);
 
-        const trashDiv = document.createElement("div");
-        SetClassList(trashDiv, "input-group-append");
+        const trashDiv = Create("div", "input-group-append");
         body.appendChild(trashDiv);
 
-        const trash = document.createElement("button");
-        SetClassList(trash, "btn", "btn-secondary");
+        const trash = Create("button", "btn", "btn-secondary");
         trashDiv.appendChild(trash);
         trash.onclick = () => {
             ArrayRemove(manage.items, text);
             manage.places.removeChild(body);
+            phpRemoveRestaurant(id);
         }
-        
-        const trashIcon = document.createElement("span");
-        SetClassList(trashIcon, "fa", "fa-trash");
-        trash.appendChild(trashIcon);
+        trash.appendChild(Create("span", "fa", "fa-trash"));
     }
 }
 
 var managePlaces = new ManagePlaces();
 
 function addPlace() {
-    managePlaces.AddItem("Restaurace", false)
+    phpAddNewRestaurant("Restaurace");
+    managePlaces.SetPlaces();
 }

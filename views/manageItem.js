@@ -1,8 +1,8 @@
 class ManageItem {
-    constructor(parent, items, name, price, type, picture, categories) {
+    constructor(managePlaces, id, name, price, type, picture, categories) {
+        this.itemId = id;
         this.name = "manage-item";
         this.body = this.CreateBody();
-        this.parentItems = items;
         this.attributes = [];
 
         this.img.src = picture;
@@ -11,34 +11,37 @@ class ManageItem {
         this.priceInput.value = price;
 
         for (var i in categories) {
-            this.AppendAttribute(categories[i]);
+            this.AppendAttribute(categories[i].id, categories[i].name);
         }
-        parent.appendChild(this.body);
-        this.parent = parent;
+        this.managePlaces = managePlaces;
 
         this.InitializeOptions();
-        this.SetType(type);
+        this.typeInput.value = type;
+        return this.body;
     }
 
     CreateBody() {
-        const body = document.createElement("div");
-        SetClassList(body, this.name, "body", "border", "mb-3");
-        
+        const manage = this;
+        const body = Create("div", this.name, "body", "border", "mb-3");
         body.appendChild(this.CreateProperties());
         body.appendChild(this.CreateAttributes());
+
+        const actualize = Create("button", "btn", "btn-primary", "float-right");
+        actualize.innerText = "Aktualizovat";
+        actualize.onclick = () => {
+            phpModifyMenuItem(manage.itemId, manage.nameInput.value, manage.priceInput.value, manage.typeInput.value, manage.fileLabel.innerText);
+        };
+        body.appendChild(actualize);
         return body;
     }
 
     CreateProperties() {
-        const body = document.createElement("div");
-        SetClassList(body, this.name, "properties", "mb-3");
+        const body = Create("div", this.name, "properties", "mb-3");
 
-        this.img = document.createElement("img");
-        SetClassList(this.img, this.name, "img");
+        this.img = Create("img", this.name, "img");
         body.appendChild(this.img);
 
-        const inner = document.createElement("div");
-        SetClassList(inner, this.name, "inner");
+        const inner = Create("div", this.name, "inner");
         body.appendChild(inner);
 
         inner.appendChild(this.CreateNameInput());
@@ -51,73 +54,55 @@ class ManageItem {
 
     CreateNameInput() {
         const manage = this;
-        const body = document.createElement("div");
-        SetClassList(body, "input-group", "mb-3");
-
-        const removeDiv = document.createElement("div");
-        SetClassList(removeDiv, "input-group-prepend");
+        const body = Create("div", "input-group", "mb-3");
+        const removeDiv = Create("div", "input-group-prepend");
         body.appendChild(removeDiv);
 
-        this.remove = document.createElement("button");
-        SetClassList(this.remove, "btn", "btn-danger");
+        this.remove = Create("button", "btn", "btn-danger");
         this.remove.onclick = () => {
             ArrayRemove(manage.parentItems, manage);
-            manage.parent.removeChild(manage.body);
+            this.managePlaces.ActualizePlace(this.currentRestaurant);
+            phpRemoveMenuItem(this.itemId);
         }
         removeDiv.appendChild(this.remove);
+        this.remove.appendChild(Create("span", "fa", "fa-trash"));
 
-        var trashIcon = document.createElement("span");
-        SetClassList(trashIcon, "fa", "fa-trash");
-        this.remove.appendChild(trashIcon);
-
-        const labelDiv = document.createElement("div");
-        SetClassList(labelDiv, "input-group-prepend");
+        const labelDiv = Create("div", "input-group-prepend");
         body.appendChild(labelDiv);
 
-        const label = document.createElement("span");
-        SetClassList(label, "input-group-text");
+        const label = Create("span", "input-group-text");
         label.innerText = "Název";
         labelDiv.appendChild(label);
 
-        this.nameInput = document.createElement("input");
-        SetClassList(this.nameInput, "form-control");
+        this.nameInput = Create("input", "form-control");
         body.appendChild(this.nameInput);
 
         return body;
     }
 
     CreatePriceInput() {
-        const body = document.createElement("div");
-        SetClassList(body, "input-group", "mb-3");
-
-        const labelDiv = document.createElement("div");
-        SetClassList(labelDiv, "input-group-prepend");
+        const body = Create("div", "input-group", "mb-3");
+        const labelDiv = Create("div", "input-group-prepend");
         body.appendChild(labelDiv);
 
-        const label = document.createElement("span");
-        SetClassList(label, "input-group-text");
+        const label = Create("span", "input-group-text");
         label.innerText = "Cena";
         labelDiv.appendChild(label);
 
-        this.priceInput = document.createElement("input");
+        this.priceInput = Create("input", "form-control");
         this.priceInput.type = "number";
         this.priceInput.step = "0.1";
-        SetClassList(this.priceInput, "form-control");
         body.appendChild(this.priceInput);
 
         return body;
     }
 
     CreateTypeInput() {
-        const select = document.createElement("select");
-        SetClassList(select, "form-control", "mb-3");
-
-        this.typeInput = select;
-        return select;
+        this.typeInput = Create("select", "form-control", "mb-3");
+        return this.typeInput;
     }
 
     InitializeOptions() {
-        this.typeOptions = ["Jídlo", "Pití", "K pivu", "Alkohol", "Káva", "Maso", "Ryba", "Příloha"];
         this.CreateOption(this.typeInput, "Jídlo")
         this.CreateOption(this.typeInput, "Pití");
         this.CreateOption(this.typeInput, "K pivu");
@@ -128,20 +113,10 @@ class ManageItem {
         this.CreateOption(this.typeInput, "Příloha");
     }
 
-    SetType(type) {
-        for (var i in this.typeOptions) {
-            if (type == this.typeOptions[i])
-                this.typeInput.selectedIndex = i;
-        }
-    }
-
-    GetType() {
-        return this.typeOptions[this.typeInput.selectedIndex];
-    }
-
     CreateOption(select, value) {
-        var option = document.createElement("option");
+        var option = Create("option");
         option.setAttribute("value", value);
+        option.value = value;
         var text = document.createTextNode(value);
         option.appendChild(text);
         select.appendChild(option);
@@ -149,14 +124,12 @@ class ManageItem {
 
     CreateImageInput() {
         const manage = this;
-        const body = document.createElement("div");
-        SetClassList(body, "input-group", "mb-3");
+        const body = Create("div", "input-group", "mb-3");
 
-        const fileDiv = document.createElement("div");
-        SetClassList(fileDiv, "custom-file");
+        const fileDiv = Create("div", "custom-file");
         body.appendChild(fileDiv);
         
-        this.fileInput = document.createElement("input");
+        this.fileInput = Create("input", "custom-file-input");
         this.fileInput.type = "file";
         this.fileInput.onchange = sender => {
             var input = sender.target;
@@ -169,110 +142,93 @@ class ManageItem {
                 reader.readAsDataURL(input.files[0]);
             }
         }
-
-        SetClassList(this.fileInput, "custom-file-input");
         fileDiv.appendChild(this.fileInput);
 
-        this.fileLabel = document.createElement("label");
-        SetClassList(this.fileLabel, "custom-file-label");
+        this.fileLabel = Create("label", "custom-file-label");
         fileDiv.appendChild(this.fileLabel);
 
-        const removeImageDiv = document.createElement("div");
-        SetClassList(removeImageDiv, "input-group-append");
+        const removeImageDiv = Create("div", "input-group-append");
         body.appendChild(removeImageDiv);
 
-        this.removeImage = document.createElement("button");
-        SetClassList(this.removeImage, "btn", "btn-secondary");
+        this.removeImage = Create("button", "btn", "btn-secondary");
         removeImageDiv.appendChild(this.removeImage);
         this.removeImage.onclick = () => {
             manage.fileLabel.innerText = "Picture";
             manage.img.src = null;
         }
-
-        const trashIcon = document.createElement("span");
-        SetClassList(trashIcon, "fa", "fa-trash");
-        this.removeImage.appendChild(trashIcon);
+        this.removeImage.appendChild(Create("span", "fa", "fa-trash"));
 
         return body;
     }
 
     CreateAttributes() {
-        const body = document.createElement("div");
-        SetClassList(body, this.name, "properties", "float-left");
-        
-        this.attributesDiv = document.createElement("div");
+        const body = Create("div", "properties", "float-left");
+
+        this.attributesDiv = Create("div", "float-left");
         body.appendChild(this.attributesDiv);
         
-        this.addAttribute = document.createElement("button");
-        SetClassList(this.addAttribute, "attribute-button", "btn", "btn-success", "mb-2");
+        this.addAttribute = Create("button", "attribute-button", "btn", "btn-success", "mb-2");
         $('.dropdown-toggle').dropdown()
         this.addAttribute.setAttribute("data-toggle", "dropdown");
         this.addAttribute.innerText = "+";
         body.appendChild(this.addAttribute);
         
-        var dropDiv = document.createElement("div");
-        SetClassList(dropDiv, "dropdown-menu");
-
-        this.CreateAttributeOption(dropDiv, "1 Lepek");
-        this.CreateAttributeOption(dropDiv, "2 Korýši");
-        this.CreateAttributeOption(dropDiv, "3 Vejce");
-        this.CreateAttributeOption(dropDiv, "4 Ryby");
-        this.CreateAttributeOption(dropDiv, "5 Arašídy");
-        this.CreateAttributeOption(dropDiv, "6 Sója");
-        this.CreateAttributeOption(dropDiv, "7 Mléko");
-        this.CreateAttributeOption(dropDiv, "8 Skořápkové plody");
-        this.CreateAttributeOption(dropDiv, "9 Celer");
-        this.CreateAttributeOption(dropDiv, "10 Hořčice");
-        this.CreateAttributeOption(dropDiv, "11 Sezam");
-        this.CreateAttributeOption(dropDiv, "12 Oxid siřičitý a siřičitany");
-        this.CreateAttributeOption(dropDiv, "13 Vlčí bob");
-        this.CreateAttributeOption(dropDiv, "14 Měkkýši");
+        var dropDiv = Create("div", "dropdown-menu");
+        this.CreateAttributeOption(dropDiv, 1, "1 Lepek");
+        this.CreateAttributeOption(dropDiv, 2, "2 Korýši");
+        this.CreateAttributeOption(dropDiv, 3, "3 Vejce");
+        this.CreateAttributeOption(dropDiv, 4, "4 Ryby");
+        this.CreateAttributeOption(dropDiv, 5, "5 Arašídy");
+        this.CreateAttributeOption(dropDiv, 6, "6 Sója");
+        this.CreateAttributeOption(dropDiv, 7, "7 Mléko");
+        this.CreateAttributeOption(dropDiv, 8, "8 Skořápkové plody");
+        this.CreateAttributeOption(dropDiv, 9, "9 Celer");
+        this.CreateAttributeOption(dropDiv, 10, "10 Hořčice");
+        this.CreateAttributeOption(dropDiv, 11, "11 Sezam");
+        this.CreateAttributeOption(dropDiv, 12, "12 Oxid siřičitý a siřičitany");
+        this.CreateAttributeOption(dropDiv, 13, "13 Vlčí bob");
+        this.CreateAttributeOption(dropDiv, 14, "14 Měkkýši");
         body.appendChild(dropDiv);
         
         return body;
     }
 
-    CreateAttributeOption(dropDiv, name) {
+    CreateAttributeOption(dropDiv, id, name) {
         const manage = this;
-        var item = document.createElement("a");
-        SetClassList(item, "dropdown-item");
+        var item = Create("a", "dropdown-item");
         item.onclick = () => {
-            manage.AppendAttribute(name);
+            if (manage.AppendAttribute(id, name))
+                phpMenuItemAppendAttribute(manage.itemId, id);
         }
         item.innerText = name;
         dropDiv.appendChild(item);
     }
 
-    AppendAttribute(name) {
+    AppendAttribute(id, name) {
         const manage = this;
-        if (ArrayContains(this.attributes, name)) return;
-        this.attributes.push(name);
+        if (ArrayContains(this.attributes, id)) return false;
+        this.attributes.push(id);
 
-        const body = document.createElement("div");
-        SetClassList(body, "btn-group", "mb-2");
-        
-        const label = document.createElement("button");
-        SetClassList(label, "btn", "btn-secondary");
+        const body = Create("div", "btn-group", "mb-2");
+        const label = Create("button", "btn", "btn-secondary");
         label.disabled = true;
         label.innerText = name;
         body.appendChild(label);
         
-        const remove = document.createElement("button");
-        SetClassList(remove, "attribute-button", "btn", "btn-secondary");
+        const remove = Create("button", "attribute-button", "btn", "btn-secondary");
         remove.onclick = () => {
-            manage.RemoveAttribute(body, name);
+            manage.RemoveAttribute(body, id);
+            phpMenuItemRemoveAttribute(this.itemId, id);
         };
         body.appendChild(remove);
-        
-        const trashIcon = document.createElement("span");
-        SetClassList(trashIcon, "fa", "fa-trash");
-        remove.appendChild(trashIcon);
+        remove.appendChild(Create("span", "fa", "fa-trash"));
 
         this.attributesDiv.appendChild(body);
+        return true;
     }
 
-    RemoveAttribute(attribute, name) {
+    RemoveAttribute(attribute, id) {
         this.attributesDiv.removeChild(attribute);
-        ArrayRemove(this.attributes, name)
+        ArrayRemove(this.attributes, id)
     }
 }

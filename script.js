@@ -1,7 +1,5 @@
-var role = "admin";
-var signed = "Daniel Šerý";
-
 function removeAllElements() {
+    alert("Nepovolený přístup");
     while (document.firstChild) {
         firstChild.removeChild(firstChild.firstChild);
     }
@@ -40,10 +38,11 @@ $(document).ready(function () {
     else {
         $('.signed').show();
         $('.unsigned').hide();
+
         $('.signed')[0].innerHTML = `
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalUcet"><span class="fa fa-user"></span> ` + signed + `</button>
-                <button type="button" class="btn btn-secondary"><span class="fa fa-sign-out-alt"></span> Odhlásit</button>
+                <button type="button" class="btn btn-secondary" onclick="setUserData()" data-toggle="modal" data-target="#modalUcet"><span class="fa fa-user"></span> ` + signed + `</button>
+                <button type="button" class="btn btn-secondary" onclick="logOut()"><span class="fa fa-sign-out-alt"></span> Odhlásit</button>
             </div>`;
     }
 });
@@ -53,14 +52,11 @@ $(document).on('click', '.number-spinner button', function () {
 		oldValue = btn.closest('.number-spinner').find('input').val().trim(),
 		newVal = 0;
 	
-	if (btn.attr('data-dir') == 'up') {
+	if (btn.attr('data-dir') == 'up')
 		newVal = parseInt(oldValue) + 1;
-	} else {
-		if (oldValue > 0) {
-			newVal = parseInt(oldValue) - 1;
-		} else {
-			newVal = 0;
-		}
+	else {
+		if (oldValue > 0) newVal = parseInt(oldValue) - 1;
+		else newVal = 0;
 	}
 	btn.closest('.number-spinner').find('input').val(newVal);
 });

@@ -12,9 +12,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="bridgeToPhp.js"></script>
     <script src="script.js"></script> 
   </head>
-  <body>
+  <body class="admin">
     <div class="modal fade" id="modalPrihlasit" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -29,21 +30,22 @@
                   <div class="input-group-prepend">
                   <span class="input-group-text">Jméno</span>
                   </div>
-                  <input type="text" class="form-control" value="">
+                  <input id="sign-name" type="text" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Heslo</span>
                   </div>
-                  <input type="password" class="form-control" value="">
+                  <input id="sign-password" type="password" class="form-control" value="">
               </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
-            <button type="button" class="btn btn-primary">Přihlásit</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="sign()">Přihlásit</button>
           </div>
         </div>
       </div>
+      <script src="modals/sign.js"></script>
     </div>
     <div class="modal fade" id="modalRegistrovat" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -59,45 +61,46 @@
                   <div class="input-group-prepend">
                   <span class="input-group-text">Jméno</span>
                   </div>
-                  <input type="text" class="form-control" value="">
+                  <input id="register-name" type="text" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Heslo</span>
                   </div>
-                  <input type="password" class="form-control" value="">
+                  <input id="register-password" type="password" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Heslo znovu</span>
                   </div>
-                  <input type="password" class="form-control" value="">
+                  <input id="register-password2" type="password" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Adresa</span>
                   </div>
-                  <input type="text" class="form-control" value="">
+                  <input id="register-address" type="text" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">E-mail</span>
                   </div>
-                  <input type="email" class="form-control" aria-describedby="emailHelp">
+                  <input id="register-mail" type="email" class="form-control" aria-describedby="emailHelp">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Tel.</span>
                   </div>
-                  <input type="text" class="form-control" value="">
+                  <input id="register-tel" type="text" class="form-control" value="">
               </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
-            <button type="button" class="btn btn-primary">Registrovat</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="register()">Registrovat</button>
           </div>
         </div>
       </div>
+      <script src="modals/register.js"></script>
     </div>
     <div class="modal fade" id="modalUcet" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -113,42 +116,85 @@
                   <div class="input-group-prepend">
                   <span class="input-group-text">Jméno</span>
                   </div>
-                  <input type="text" class="form-control" value="Učitel Národů">
+                  <input id="user-name" type="text" class="form-control" value="Učitel Národů">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Heslo</span>
                   </div>
-                  <input type="password" class="form-control" value="">
+                  <input id="user-password" type="password" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
-                  <div class="input-group-prepend">
+                  <div class="input-group-prepend"> 
                   <span class="input-group-text">Heslo znovu</span>
                   </div>
-                  <input type="password" class="form-control" value="">
+                  <input id="user-password2" type="password" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Adresa</span>
                   </div>
-                  <input type="text" class="form-control" value="Božetěchova 1/2">
+                  <input id="user-address" type="text" class="form-control" value="Božetěchova 1/2">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">E-mail</span>
                   </div>
-                  <input type="email" class="form-control" value="jan.amos.komensky@mail.cz" aria-describedby="emailHelp">
+                  <input id="user-mail" type="email" class="form-control" value="jan.amos.komensky@mail.cz" aria-describedby="emailHelp">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Tel.</span>
                   </div>
-                  <input type="text" class="form-control" value="213 526 756">
+                  <input id="user-tel" type="text" class="form-control" value="213 526 756">
               </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
             <button type="button" class="btn btn-primary">Aktualizovat</button>
+          </div>
+        </div>
+      </div>
+      <script src="modals/user.js"></script>
+    </div>
+    <div class="modal fade" id="modalUpravit" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Upravit účet</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Jméno</span>
+                  </div>
+                  <input id="modify-user-name" type="text" class="form-control" value="Učitel Národů" disabled>
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Adresa</span>
+                  </div>
+                  <input id="modify-user-address" type="text" class="form-control" value="Božetěchova 1/2">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">E-mail</span>
+                  </div>
+                  <input id="modify-user-mail" type="email" class="form-control" value="jan.amos.komensky@mail.cz" aria-describedby="emailHelp">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Tel.</span>
+                  </div>
+                  <input id="modify-user-tel" type="text" class="form-control" value="213 526 756">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="adminModifyUser()">Aktualizovat</button>
           </div>
         </div>
       </div>
@@ -191,105 +237,17 @@
                 <tr>
                   <th scope="col">Uživatel</th>
                   <th scope="col">Role</th>
-                  <th scope="col"></th>
+                  <th scope="col">Akce</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Daniel Šerý</th>
-                  <td>
-                      <select class="form-control" selected="admin">
-                          <option>user</option>
-                          <option>driver</option>
-                          <option>operator</option>
-                          <option selected="selected">admin</option>
-                          <option>none</option>
-                      </select>
-                    </td>
-                  <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalUpravit"><span class="fa fa-wrench"></span> Upravit</button>
-                        <button type="button" class="btn btn-danger"><span class="fa fa-trash"></span> Odebrat</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">František Koleček</th>
-                  <td>
-                      <select class="form-control" value="admin">
-                          <option>user</option>
-                          <option>driver</option>
-                          <option>operator</option>
-                          <option selected="selected">admin</option>
-                          <option>none</option>
-                      </select>
-                  </td>
-                  <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalUpravit"><span class="fa fa-wrench"></span> Upravit</button>
-                        <button type="button" class="btn btn-danger"><span class="fa fa-trash"></span> Odebrat</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Sára Šerá</th>
-                  <td>
-                      <select class="form-control" value="admin">
-                          <option>user</option>
-                          <option selected="selected">driver</option>
-                          <option>operator</option>
-                          <option>admin</option>
-                          <option>none</option>
-                      </select>
-                  </td>
-                  <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalUpravit"><span class="fa fa-wrench"></span> Upravit</button>
-                        <button type="button" class="btn btn-danger"><span class="fa fa-trash"></span> Odebrat</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Daniel Drapl</th>
-                  <td>
-                      <select class="form-control" value="admin">
-                          <option>user</option>
-                          <option>driver</option>
-                          <option selected="selected">operator</option>
-                          <option>admin</option>
-                          <option>none</option>
-                      </select>
-                  </td>
-                  <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalUpravit"><span class="fa fa-wrench"></span> Upravit</button>
-                        <button type="button" class="btn btn-danger"><span class="fa fa-trash"></span> Odebrat</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Pavel Morcinek</th>
-                  <td>
-                      <select class="form-control" value="admin">
-                          <option selected="selected">user</option>
-                          <option>driver</option>
-                          <option>operator</option>
-                          <option>admin</option>
-                          <option>none</option>
-                      </select>
-                  </td>
-                  <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalUpravit"><span class="fa fa-wrench"></span> Upravit</button>
-                        <button type="button" class="btn btn-danger"><span class="fa fa-trash"></span> Odebrat</button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
+              <tbody id="users"></tbody>
             </table>
         </div>
       </div>    
     </div>
+
+    <script src="extensions/extensions.js"></script>
+    <script src="views/manageUsers.js"></script>
 
     <div class="jumbotron text-center" style="margin-bottom:0">
       <p>Vytvořeno Danielem Šerým a Františkem Kolečkem</p>

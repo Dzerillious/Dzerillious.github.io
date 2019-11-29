@@ -12,6 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="bridgeToPhp.js"></script>
     <script src="script.js"></script> 
   </head>
   <body>
@@ -29,21 +30,22 @@
                   <div class="input-group-prepend">
                   <span class="input-group-text">Jméno</span>
                   </div>
-                  <input type="text" class="form-control" value="">
+                  <input id="sign-name" type="text" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Heslo</span>
                   </div>
-                  <input type="password" class="form-control" value="">
+                  <input id="sign-password" type="password" class="form-control" value="">
               </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
-            <button type="button" class="btn btn-primary">Přihlásit</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="sign()">Přihlásit</button>
           </div>
         </div>
       </div>
+      <script src="modals/sign.js"></script>
     </div>
     <div class="modal fade" id="modalRegistrovat" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -59,45 +61,46 @@
                   <div class="input-group-prepend">
                   <span class="input-group-text">Jméno</span>
                   </div>
-                  <input type="text" class="form-control" value="">
+                  <input id="register-name" type="text" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Heslo</span>
                   </div>
-                  <input type="password" class="form-control" value="">
+                  <input id="register-password" type="password" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Heslo znovu</span>
                   </div>
-                  <input type="password" class="form-control" value="">
+                  <input id="register-password2" type="password" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Adresa</span>
                   </div>
-                  <input type="text" class="form-control" value="">
+                  <input id="register-address" type="text" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">E-mail</span>
                   </div>
-                  <input type="email" class="form-control" aria-describedby="emailHelp">
+                  <input id="register-mail" type="email" class="form-control" aria-describedby="emailHelp">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Tel.</span>
                   </div>
-                  <input type="text" class="form-control" value="">
+                  <input id="register-tel" type="text" class="form-control" value="">
               </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
-            <button type="button" class="btn btn-primary">Registrovat</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="register()">Registrovat</button>
           </div>
         </div>
       </div>
+      <script src="modals/register.js"></script>
     </div>
     <div class="modal fade" id="modalUcet" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -113,45 +116,46 @@
                   <div class="input-group-prepend">
                   <span class="input-group-text">Jméno</span>
                   </div>
-                  <input type="text" class="form-control" value="Učitel Národů">
+                  <input id="user-name" type="text" class="form-control" value="Učitel Národů" disabled>
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Heslo</span>
                   </div>
-                  <input type="password" class="form-control" value="">
+                  <input id="user-password" type="password" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend"> 
                   <span class="input-group-text">Heslo znovu</span>
                   </div>
-                  <input type="password" class="form-control" value="">
+                  <input id="user-password2" type="password" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Adresa</span>
                   </div>
-                  <input type="text" class="form-control" value="Božetěchova 1/2">
+                  <input id="user-address" type="text" class="form-control" value="Božetěchova 1/2">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">E-mail</span>
                   </div>
-                  <input type="email" class="form-control" value="jan.amos.komensky@mail.cz" aria-describedby="emailHelp">
+                  <input id="user-mail" type="email" class="form-control" value="jan.amos.komensky@mail.cz" aria-describedby="emailHelp">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Tel.</span>
                   </div>
-                  <input type="text" class="form-control" value="213 526 756">
+                  <input id="user-tel" type="text" class="form-control" value="213 526 756">
               </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
-            <button type="button" class="btn btn-primary">Aktualizovat</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="modifyUser()">Aktualizovat</button>
           </div>
         </div>
       </div>
+      <script src="modals/user.js"></script>
     </div>
     <div class="modal fade" id="modalObjednatPrihlasen" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -162,14 +166,11 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              <p class="left">2x Hovězí burger ala Formanka, hranolky</p> <p class="right">114 Kč</p>
-              <p class="left">1x Česnečka</p> <p class="right">49 Kč</p>
-              <p class="left">Dohromady</p> <p class="right">250 Kč</p>
+            <div id="signed-order" class="modal-body">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
-              <button type="button" class="btn btn-primary">Potvrdit</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="orderSigned()">Potvrdit</button>
             </div>
           </div>
         </div>
@@ -184,43 +185,41 @@
             </button>
           </div>
           <div class="modal-body">
-              <p class="left">2x Hovězí burger ala Formanka, hranolky</p> <p class="right">114 Kč</p>
-              <p class="left">1x Česnečka</p> <p class="right">49 Kč</p>
-              <p class="left">Dohromady</p> <p class="right">250 Kč</p>
-
+              <div id="unsigned-order"></div>
               <hr>
               
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Jméno</span>
                   </div>
-                  <input type="text" class="form-control" value="">
+                  <input id="order-name" type="text" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Adresa</span>
                   </div>
-                  <input type="text" class="form-control" value="">
+                  <input id="order-address" type="text" class="form-control" value="">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">E-mail</span>
                   </div>
-                  <input type="email" class="form-control" aria-describedby="emailHelp">
+                  <input id="order-mail" type="email" class="form-control" aria-describedby="emailHelp">
               </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                   <span class="input-group-text">Tel.</span>
                   </div>
-                  <input type="text" class="form-control" value="">
+                  <input id="order-tel" type="text" class="form-control" value="">
               </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
-            <button type="button" class="btn btn-primary">Potvrdit</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="orderUnsigned()">Potvrdit</button>
           </div>
         </div>
       </div>
+      <script src="modals/user.js"></script>
     </div>
 
     <div class="jumbotron text-center" style="margin-bottom:0">
@@ -256,150 +255,28 @@
     <div class="container mb-4 mt-4">
       <div class="row">
         <div class="col-sm-3">
-            <ul class="nav nav-pills flex-column">
-              <li class="nav-item"><a class="nav-link active" href="#">Formanka</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Suzies</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Na vyhlídce</a></li>
-            </ul>
+            <ul id="places" class="nav nav-pills flex-column"></ul>
         </div>
         <div class="col-sm-9">
           <hr/>
           <h3 class="left">Denní menu</h3>
           <hr/>
-          <div class="menu-item border mb-3">
-            <img src="burger.jpg" width="15%" class="float-left" style="padding-right: 20px;">
-            <div class="float-left menu-item-inner">
-                <div class="float-left menu-item-inner">
-                    <h5 class="float-left">Hovězí burger ala Formanka, hranolky</h5>
-                    <h5 class="float-right">114 Kč</h5>
-                </div>
-                <button type="button" class="btn btn-secondary float-left menu-item-property mb-2" disabled>Lepek</button>
-                <button type="button" class="btn btn-secondary float-left menu-item-property mb-2" disabled>Vejce</button>
-                <button type="button" class="btn btn-secondary float-left menu-item-property mb-2" disabled>Mléko</button>
-                <button type="button" class="btn btn-secondary float-left menu-item-property mb-2" disabled>Hořčice</button>
-
-                <div class="btn-group input-group number-spinner right">
-                  <button class="btn btn-secondary side-button" data-dir="dwn"><span class="fa fa-angle-down"></span></button>
-                  <input type="text" class="form-control text-center" value="0">
-                  <button class="btn btn-secondary side-button" data-dir="up"><span class="fa fa-angle-up"></span></button>
-                </div>
-            </div>
-          </div>
-
-          <div class="menu-item border mb-3">
-            <div class="float-left menu-item-inner">
-                <div class="float-left menu-item-inner">
-                    <h5 class="float-left">Smetanový špenát, uzené maso, vařené brambory</h5>
-                    <h5 class="float-right">109 Kč</h5>
-                </div>
-                <button type="button" class="btn btn-secondary float-left menu-item-property mb-2" disabled>Mléko</button>
-
-                <div class="btn-group input-group number-spinner right">
-                  <button class="btn btn-secondary side-button" data-dir="dwn"><span class="fa fa-angle-down"></span></button>
-                  <input type="text" class="form-control text-center" value="0">
-                  <button class="btn btn-secondary side-button" data-dir="up"><span class="fa fa-angle-up"></span></button>
-                </div>
-            </div>
-          </div>
-
-          <div class="menu-item border mb-3">
-            <div class="float-left menu-item-inner">
-                <div class="float-left menu-item-inner">
-                    <h5 class="float-left">Vepřová játra na grilu, hranolky</h5>
-                    <h5 class="float-right">105 Kč</h5>
-                </div>
-
-                <div class="btn-group input-group number-spinner right">
-                  <button class="btn btn-secondary side-button" data-dir="dwn"><span class="fa fa-angle-down"></span></button>
-                  <input type="text" class="form-control text-center" value="0">
-                  <button class="btn btn-secondary side-button" data-dir="up"><span class="fa fa-angle-up"></span></button>
-                </div>
-            </div>
-          </div>
+          <div id="daily-menu"></div>
 
           <hr/>
           <h3 class="left">Stálé menu</h3>
           <hr/>
-
-          <div class="menu-item border mb-3">
-            <div class="float-left menu-item-inner">
-                <div class="float-left menu-item-inner">
-                    <h5 class="float-left">Česnečka</h5>
-                    <h5 class="float-right">49 Kč</h5>
-                </div>
-
-                <div class="btn-group input-group number-spinner right">
-                  <button class="btn btn-secondary side-button" data-dir="dwn"><span class="fa fa-angle-down"></span></button>
-                  <input type="text" class="form-control text-center" value="0">
-                  <button class="btn btn-secondary side-button" data-dir="up"><span class="fa fa-angle-up"></span></button>
-                </div>
-            </div>
-          </div>
-
-          <div class="menu-item border mb-3">
-            <div class="float-left menu-item-inner">
-                <div class="float-left menu-item-inner">
-                    <h5 class="float-left">Hovězí Tataráček (6 ks půl krajíce topinek, česnek)</h5>
-                    <h5 class="float-right">135 Kč</h5>
-                </div>
-
-                <div class="btn-group input-group number-spinner right">
-                  <button class="btn btn-secondary side-button" data-dir="dwn"><span class="fa fa-angle-down"></span></button>
-                  <input type="text" class="form-control text-center" value="0">
-                  <button class="btn btn-secondary side-button" data-dir="up"><span class="fa fa-angle-up"></span></button>
-                </div>
-            </div>
-          </div>
-
-          <div class="menu-item border mb-3">
-            <div class="float-left menu-item-inner">
-                <div class="float-left menu-item-inner">
-                    <h5 class="float-left">Nakládaný Hermelín, chléb</h5>
-                    <h5 class="float-right">65 Kč</h5>
-                </div>
-
-                <div class="btn-group input-group number-spinner right">
-                  <button class="btn btn-secondary side-button" data-dir="dwn"><span class="fa fa-angle-down"></span></button>
-                  <input type="text" class="form-control text-center" value="0">
-                  <button class="btn btn-secondary side-button" data-dir="up"><span class="fa fa-angle-up"></span></button>
-                </div>
-            </div>
-          </div>
-
-          <div class="menu-item border mb-3">
-            <div class="float-left menu-item-inner">
-                <div class="float-left menu-item-inner">
-                    <h5 class="float-left">Klobása na grilu s křenem, hořčicí a chlebem</h5>
-                    <h5 class="float-right">65 Kč</h5>
-                </div>
-
-                <div class="btn-group input-group number-spinner right">
-                  <button class="btn btn-secondary side-button" data-dir="dwn"><span class="fa fa-angle-down"></span></button>
-                  <input type="text" class="form-control text-center" value="0">
-                  <button class="btn btn-secondary side-button" data-dir="up"><span class="fa fa-angle-up"></span></button>
-                </div>
-            </div>
-          </div>
-
-          <div class="menu-item border mb-3">
-            <div class="float-left menu-item-inner">
-                <div class="float-left menu-item-inner">
-                    <h5 class="float-left">Horké Chipsy, dip</h5>
-                    <h5 class="float-right">59 Kč</h5>
-                </div>
-
-                <div class="btn-group input-group number-spinner right">
-                  <button class="btn btn-secondary side-button" data-dir="dwn"><span class="fa fa-angle-down"></span></button>
-                  <input type="text" class="form-control text-center" value="0">
-                  <button class="btn btn-secondary side-button" data-dir="up"><span class="fa fa-angle-up"></span></button>
-                </div>
-            </div>
-          </div>
+          <div id="menu"></div>
           
           <hr/>
-          <button type="button" class="btn btn-primary signed" data-toggle="modal" data-target="#modalObjednatPrihlasen">Objednat</button>
-          <button type="button" class="btn btn-primary unsigned" data-toggle="modal" data-target="#modalObjednatNeprihlasen">Objednat</button>
+          <button type="button" class="btn btn-primary signed" data-toggle="modal" data-target="#modalObjednatPrihlasen" onclick="changeSignedOrder()">Objednat</button>
+          <button type="button" class="btn btn-primary unsigned" data-toggle="modal" data-target="#modalObjednatNeprihlasen" onclick="changeUnsignedOrder()">Objednat</button>
 
+          <script src="extensions/extensions.js"></script>
+          <script src="views/showItem.js"></script>
+          <script src="views/showPlace.js"></script>
+          <script src="views/showPlaces.js"></script>
+          <script src="modals/order.js"></script>
         </div>
       </div>
     </div>

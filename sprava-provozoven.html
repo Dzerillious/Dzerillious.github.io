@@ -12,147 +12,151 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="bridgeToPhp.js"></script>
     <script src="script.js"></script> 
   </head>
-  <body>
-    <div class="modal fade" id="modalPrihlasit" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Přihlásit se</h5>
-            <button type="button" class="close" data-dismiss="modal">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Jméno</span>
-                  </div>
-                  <input type="text" class="form-control" value="">
-              </div>
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Heslo</span>
-                  </div>
-                  <input type="password" class="form-control" value="">
-              </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
-            <button type="button" class="btn btn-primary">Přihlásit</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="modalRegistrovat" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" >Přihlásit se</h5>
-            <button type="button" class="close" data-dismiss="modal">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Jméno</span>
-                  </div>
-                  <input type="text" class="form-control" value="">
-              </div>
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Heslo</span>
-                  </div>
-                  <input type="password" class="form-control" value="">
-              </div>
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Heslo znovu</span>
-                  </div>
-                  <input type="password" class="form-control" value="">
-              </div>
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Adresa</span>
-                  </div>
-                  <input type="text" class="form-control" value="">
-              </div>
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">E-mail</span>
-                  </div>
-                  <input type="email" class="form-control" aria-describedby="emailHelp">
-              </div>
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Tel.</span>
-                  </div>
-                  <input type="text" class="form-control" value="">
-              </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
-            <button type="button" class="btn btn-primary">Registrovat</button>
+  <body class="operator">
+      <div class="modal fade" id="modalPrihlasit" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Přihlásit se</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">Jméno</span>
+                    </div>
+                    <input id="sign-name" type="text" class="form-control" value="">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">Heslo</span>
+                    </div>
+                    <input id="sign-password" type="password" class="form-control" value="">
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="sign()">Přihlásit</button>
+            </div>
           </div>
         </div>
+        <script src="modals/sign.js"></script>
       </div>
-    </div>
-    <div class="modal fade" id="modalUcet" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Účet</h5>
-            <button type="button" class="close" data-dismiss="modal">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Jméno</span>
-                  </div>
-                  <input type="text" class="form-control" value="Učitel Národů">
-              </div>
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Heslo</span>
-                  </div>
-                  <input type="password" class="form-control" value="">
-              </div>
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Heslo znovu</span>
-                  </div>
-                  <input type="password" class="form-control" value="">
-              </div>
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Adresa</span>
-                  </div>
-                  <input type="text" class="form-control" value="Božetěchova 1/2">
-              </div>
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">E-mail</span>
-                  </div>
-                  <input type="email" class="form-control" value="jan.amos.komensky@mail.cz" aria-describedby="emailHelp">
-              </div>
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Tel.</span>
-                  </div>
-                  <input type="text" class="form-control" value="213 526 756">
-              </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
-            <button type="button" class="btn btn-primary">Aktualizovat</button>
+      <div class="modal fade" id="modalRegistrovat" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" >Přihlásit se</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">Jméno</span>
+                    </div>
+                    <input id="register-name" type="text" class="form-control" value="">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">Heslo</span>
+                    </div>
+                    <input id="register-password" type="password" class="form-control" value="">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">Heslo znovu</span>
+                    </div>
+                    <input id="register-password2" type="password" class="form-control" value="">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">Adresa</span>
+                    </div>
+                    <input id="register-address" type="text" class="form-control" value="">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">E-mail</span>
+                    </div>
+                    <input id="register-mail" type="email" class="form-control" aria-describedby="emailHelp">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">Tel.</span>
+                    </div>
+                    <input id="register-tel" type="text" class="form-control" value="">
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="register()">Registrovat</button>
+            </div>
           </div>
         </div>
+        <script src="modals/register.js"></script>
       </div>
-    </div>
+      <div class="modal fade" id="modalUcet" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Účet</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">Jméno</span>
+                    </div>
+                    <input id="user-name" type="text" class="form-control" value="Učitel Národů" disabled>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">Heslo</span>
+                    </div>
+                    <input id="user-password" type="password" class="form-control" value="">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend"> 
+                    <span class="input-group-text">Heslo znovu</span>
+                    </div>
+                    <input id="user-password2" type="password" class="form-control" value="">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">Adresa</span>
+                    </div>
+                    <input id="user-address" type="text" class="form-control" value="Božetěchova 1/2">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">E-mail</span>
+                    </div>
+                    <input id="user-mail" type="email" class="form-control" value="jan.amos.komensky@mail.cz" aria-describedby="emailHelp">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">Tel.</span>
+                    </div>
+                    <input id="user-tel" type="text" class="form-control" value="213 526 756">
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušit</button>
+              <button type="button" class="btn btn-primary">Aktualizovat</button>
+            </div>
+          </div>
+        </div>
+        <script src="modals/user.js"></script>
+      </div>
 
     <div class="jumbotron text-center" style="margin-bottom:0">
       <h1>Jídelny</h1>
@@ -193,17 +197,17 @@
             <div class="input-group-prepend">
               <span class="input-group-text">Jméno</span>
             </div>
-            <input type="text" class="form-control" value="Formanka">
+            <input id="restaurant-name" type="text" class="form-control" value="Formanka">
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Adresa</span>
             </div>
-            <input type="text" class="form-control" value="Mášova 8, Veveří, Brno střed">
+            <input id="restaurant-address" type="text" class="form-control" value="Mášova 8, Veveří, Brno střed">
           </div>
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-primary">Aktualizovat</button>
-            <button type="button" class="btn btn-primary">Uzavřít objednávání</button>
+            <button type="button" class="btn btn-primary" onclick="actualize()">Aktualizovat</button>
+            <button type="button" class="btn btn-primary" onclick="closeOrders()">Uzavřít objednávání</button>
           </div>
           <hr/>
           <h2>Denní menu</h2>
@@ -221,10 +225,6 @@
               <button type="button" class="btn btn-success" onclick="addMenuItem()">+</button>
           </div>
           <hr/>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-primary">Aktualizovat</button>
-            <button type="button" class="btn btn-primary">Uzavřít objednávání</button>
-          </div>
           <script src="extensions/extensions.js"></script>
           <script src="views/manageItem.js"></script>
           <script src="views/managePlace.js"></script>
