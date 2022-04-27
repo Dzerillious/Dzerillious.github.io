@@ -1,0 +1,88 @@
+@font-face { font-family: UnifrakturCook; src: url('../fonts/UnifrakturCook-Bold.ttf'); } 
+
+body {
+    font-family: 'UnifrakturCook', cursive;
+    background-image: url("../images/background.jpg");
+    background-color: #AB8960;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: black ;
+}
+
+div.button {
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-color: transparent;
+    background-image: url("../images/button.png");
+}
+
+div.button.danger {
+    background-image: url("../images/button_danger.png");
+}
+
+div.button.selected {
+    background-image: url("../images/button_selected.png");
+}
+
+div.button:hover {
+    cursor: pointer;
+    background-color: #b19a176e;
+}
+
+div.long-button {
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-color: transparent;
+    clear: both;
+    margin: 0 auto 0 auto;
+    text-align: center;
+    font-size: 40;
+    width: 250px;
+    height: 50px;
+    background-image: url("../images/long_button.png");
+}
+
+div.long-button:hover {
+  cursor: pointer;
+  background-color: #b19a176e;
+}
+
+.cant-select-text {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently */
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: none; 
+}
+  
+::-webkit-scrollbar-thumb {
+  background: black; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #202020;
+}
+  
+
+::-webkit-scrollbar-thumb:hover {
+  background: #202020; 
+}
+
+::-webkit-scrollbar-corner {
+  background: none; 
+}

@@ -1,0 +1,37 @@
+div.game-header.body {
+    margin: 40px 20px 20px 20px;
+    text-align: center;
+    clip-path: inset(0 0 0 0);
+}
+
+div.game-header.time {
+    font-size: 30;
+    vertical-align: middle;
+    line-height: 200%;
+    text-align: left;
+    width: 200;
+    float: left;
+}
+
+div.game-header.score {
+    line-height: 135%;
+    font-size: 45;
+    margin: auto;
+}
+
+div.game-header.more {
+    width: 50px;
+    height: 50px;
+    margin: 5px 5px 0px 150px;
+    float: right;
+}
+
+div.game-header.more:hover {
+    background-image: url("../images/button_hover.png");
+}
+
+div.game-header.more-text {
+    font-size: 40;
+    line-height: 125%;
+    transform: rotate(90deg);
+}

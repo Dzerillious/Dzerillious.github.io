@@ -1,0 +1,68 @@
+div.more-menu.div {
+    float: right;
+    display: none;
+    margin: -100px 0 0 0;
+    border-color: black;
+    border-style: solid;
+    border-width: 0 0 0 10px;
+    overflow: hidden;
+}
+
+div.game-less-button-text {
+    font-size: 40;
+    line-height: 175%;
+    transform: rotate(90deg);
+}
+
+div.more-menu-button {
+    margin: 25px;
+}
+
+div.more-menu.less-button {
+    width: 50px;
+    height: 50px;
+    margin: 24px 20px 20px 15px;
+    float: left;
+}
+
+div.more-menu.less-button:hover {
+    background-image: url("../images/button_hover.png");
+}
+
+div.more-menu.less-button-text {
+    font-size: 40;
+    line-height: 175%;
+    transform: rotate(90deg);
+}
+
+@keyframes more-menu-expand-anim {
+    0%      {width: 0; margin: 20px 0 0 -10px; }
+    100%    {width: 300px; margin: 20px 0 0 -310px; }
+}  
+
+div.more-menu.more-menu-expand {
+    animation-name: more-menu-expand-anim;
+    -webkit-animation-name: more-menu-expand-anim;
+
+    animation-duration: 0.15s;
+    -webkit-animation-duration: 0.15s;
+    
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+}
+
+@keyframes more-menu-collapse-anim {
+    0%      {width: 300px; margin: 20px 0 0 -310px; }
+    100%    {width: 0; margin: 20px 0 0 -10px; }
+}  
+
+div.more-menu.more-menu-collapse {
+    animation-name: more-menu-collapse-anim;
+    -webkit-animation-name: more-menu-collapse-anim;
+
+    animation-duration: 0.15s;
+    -webkit-animation-duration: 0.15s;
+    
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+}

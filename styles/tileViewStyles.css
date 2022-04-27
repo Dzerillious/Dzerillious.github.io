@@ -1,0 +1,35 @@
+div.pexeso-tile.body {
+    margin: 10px;
+    width: 150px;
+    height: 150px;
+}
+
+p.pexeso-tile.back {
+    height: 50%;
+    margin: 25% 0;
+    font-size: 48;
+    text-align: center;
+}
+
+img.pexeso-tile.front {
+    width: 100%;
+    height: 100%;
+}
+
+div.pexeso-tile.selected {
+    background-image: url("../images/button_hover.png");
+}
+
+@keyframes pexeso-tile-rotate-animation {
+    0%   {transform: scaleX(1);}
+    50%  {transform: scaleX(0);}
+    100% {transform: scaleX(1);}
+}  
+
+div.pexeso-tile.rotate {
+    animation-name: pexeso-tile-rotate-animation;
+    animation-duration: 0.15s;
+    
+    -webkit-animation-name: pexeso-tile-rotate-animation; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.15s; /* Safari 4.0 - 8.0 */
+}

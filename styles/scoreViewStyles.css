@@ -1,0 +1,37 @@
+p.score.title {
+    font-size: 60;
+    text-align: center;
+    margin: 20px 0 40px 0;
+}
+
+p.score.sub-title {
+    font-size: 40;
+    text-align: center;
+    margin: 20px 0 30px 0;
+}
+
+input.score {
+    width: 100%;
+    font-size: 40;
+    border: black;
+    border-style: solid;
+    border-width: 3px;
+    font-family: 'UnifrakturCook', cursive;
+    text-align: center;
+    background-image: url("../images/background.jpg");
+    background-position-x: center;
+}
+
+div.score.button {
+    width: 50px;
+    height: 50px;
+    margin: 0px auto;
+}
+
+div.score.buttons {
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    align-content: center;
+    margin: 40px 20px;
+}

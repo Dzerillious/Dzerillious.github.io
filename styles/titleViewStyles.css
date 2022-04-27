@@ -1,0 +1,31 @@
+div.title.body {
+    position: fixed;
+    top: 0;
+}
+
+p.title.title {
+    font-size: 60;
+    text-align: center;
+    margin: 20px 0 30px 0;
+}
+
+div.title.top100 {
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    height: 30%;
+    width: 600px;
+    overflow-y: scroll;
+}
+
+p.title.top100-title {
+    font-size: 40;
+    text-align: center;
+    margin: 15px 0 10px 0;
+}
+
+p.title.top100-content {
+    font-size: 25;
+    margin: 0;
+    text-align: center;
+}
