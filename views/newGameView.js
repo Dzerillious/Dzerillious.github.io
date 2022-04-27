@@ -115,7 +115,7 @@ class NewGameView {
         sets.appendChild(setDiv);
 
         const setImg = Create("img", this.name, "mode-img");
-        setImg.src = "images/" + name + ".png";
+        setImg.src = "images/" + name + ".jpg";
         setDiv.appendChild(setImg);
 
         const setBorder = Create("div", this.name, "set", "set-border");
